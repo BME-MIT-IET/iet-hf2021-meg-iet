@@ -27,3 +27,4 @@ Preconditions.checkArgument(valueProvider != null, "Invalid template variable", 
 ```
 
 ugyanis ebben a sorban a [Preconditions](https://guava.dev/releases/19.0/api/docs/com/google/common/base/Preconditions.html).checkArgument függvénye IllegalArgumentExceptiont fog dobni, abban az esetben, ha a valueProvider null. Így a nem várt NullPointerException nem következhet be, ugyanis a program futása hamarabb le fog állni.
+Így a csapat megegyezett benne, hogy ez a hiba nem hiba, és a Sonarqube-ban a false positive jelzést választottuk.
