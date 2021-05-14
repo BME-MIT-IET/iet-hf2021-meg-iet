@@ -13,3 +13,17 @@ Az új projekt hozzáadása során ant-es opció nem volt, így a sonar-scanner 
 ![](images/sonar-qube-results.PNG)
 
 Ezután Jakabos Csengével felváltva kezdtük el értelmezni és javítani a fellelt hibákat.
+
+### Bug #1
+
+![](images/bug-1.PNG)
+
+Az itt látható hibaleírásban a statikus elemző azt a potenciális hibát vette észre, hogy a valueProviderFor() függvény térhet vissza null értékkel.
+Két sorral később pedig a valueProvider-be navigálunk, amely null esetén NullPointerExceptiont dobhat.
+Amit azonban a statikus elemző nem vett észre, az a közötte levő sor, a
+
+```
+Preconditions.checkArgument(valueProvider != null, "Invalid template variable", var);
+```
+
+ugyanis ebben a sorban a [Preconditions](https://guava.dev/releases/19.0/api/docs/com/google/common/base/Preconditions.html).checkArgument függvénye IllegalArgumentExceptiont fog dobni, abban az esetben, ha a valueProvider null. Így a nem várt NullPointerException nem következhet be, ugyanis a program futása hamarabb le fog állni.
