@@ -36,7 +36,7 @@
 	</target>
 	
 	<target name="compile" depends="init">
-		<javac source="1.6" target="1.6" destdir="${build}" debug="yes"
+		<javac source="1.7" target="1.7" destdir="${build}" debug="yes"
 			deprecation="yes">
 			<classpath refid="project.class.path"/>
 			<src path="${src}"/>
