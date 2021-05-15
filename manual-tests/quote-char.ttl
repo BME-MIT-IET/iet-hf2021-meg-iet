@@ -1,0 +1,100 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix vso: <http://purl.org/vso/ns#> .
+@prefix : <http://example.org/cars#> .
+
+:Manufacturer-Ford a gr:BusinessEntity ;
+	rdfs:label "Ford" .
+
+:Model-e4v61spgp70791ce77bv3n0ethjdr0fp a gr:ProductOrServiceModel ;
+	rdfs:label "Ford E350" ;
+	gr:hasManufacturer :Manufacturer-Ford .
+
+:Car-1 a vso:Automobile , gr:ActualProductOrServiceInstance ;
+	rdfs:label "Ford E350 (1997)" ;
+	gr:hasManufacturer :Manufacturer-a6nc5cg6lagnauhqlkticpfsmaon1c5g ;
+	gr:hasMakeAndModel :Model-e4v61spgp70791ce77bv3n0ethjdr0fp ;
+	vso:modelDate "1997-01-01"^^xsd:date .
+
+:Offer-vu1nsp8jk39ilcjdhbe40c2n97sdubs8 a gr:Offering ;
+	rdfs:comment "ac, abs, moon" ;
+	gr:includes :Car-1 ;
+	gr:hasBusinessFunction gr:Sell ;
+	gr:hasPriceSpecification _:node1f5nqeqfvx1 .
+
+_:node1f5nqeqfvx1 a gr:UnitPriceSpecification ;
+	gr:hasCurrency "USD"^^xsd:string ;
+	gr:hasCurrencyValue "3000.00"^^xsd:float .
+
+:Manufacturer-Chevy a gr:BusinessEntity ;
+	rdfs:label "Chevy" .
+
+:Model-v72vvcrorqq231va5e9t24cfu4mbc9bk a gr:ProductOrServiceModel ;
+	rdfs:label "Chevy Venture 'Extended Edition'" ;
+	gr:hasManufacturer :Manufacturer-Chevy .
+
+:Car-2 a vso:Automobile , gr:ActualProductOrServiceInstance ;
+	rdfs:label "Chevy Venture 'Extended Edition' (1999)" ;
+	gr:hasManufacturer :Manufacturer-26hg472sj19jjuejvno5v3amimb8i6bv ;
+	gr:hasMakeAndModel :Model-v72vvcrorqq231va5e9t24cfu4mbc9bk ;
+	vso:modelDate "1999-01-01"^^xsd:date .
+
+:Offer-q5hsnhtm7oi85kbf8i5f2s2phcclf3d1 a gr:Offering ;
+	rdfs:comment "b7d31523-dc14-440d-a87d-5a132bc4442a" ;
+	gr:includes :Car-2 ;
+	gr:hasBusinessFunction gr:Sell ;
+	gr:hasPriceSpecification _:node1f5nqeqfvx2 .
+
+_:node1f5nqeqfvx2 a gr:UnitPriceSpecification ;
+	gr:hasCurrency "USD"^^xsd:string ;
+	gr:hasCurrencyValue "4900.00"^^xsd:float .
+
+:Manufacturer-Chevy a gr:BusinessEntity ;
+	rdfs:label "Chevy" .
+
+:Model-56hd094ram545f14sju7k4eo94bkaum6 a gr:ProductOrServiceModel ;
+	rdfs:label "Chevy Venture 'Extended Edition, Very Large'" ;
+	gr:hasManufacturer :Manufacturer-Chevy .
+
+:Car-3 a vso:Automobile , gr:ActualProductOrServiceInstance ;
+	rdfs:label "Chevy Venture 'Extended Edition, Very Large' (1999)" ;
+	gr:hasManufacturer :Manufacturer-26hg472sj19jjuejvno5v3amimb8i6bv ;
+	gr:hasMakeAndModel :Model-56hd094ram545f14sju7k4eo94bkaum6 ;
+	vso:modelDate "1999-01-01"^^xsd:date .
+
+:Offer-4e0tph6cr9ahrfeuctbj5qiep3l69i4p a gr:Offering ;
+	rdfs:comment "b7d31523-dc14-440d-a87d-5a132bc4442a" ;
+	gr:includes :Car-3 ;
+	gr:hasBusinessFunction gr:Sell ;
+	gr:hasPriceSpecification _:node1f5nqeqfvx3 .
+
+_:node1f5nqeqfvx3 a gr:UnitPriceSpecification ;
+	gr:hasCurrency "USD"^^xsd:string ;
+	gr:hasCurrencyValue "5000.00"^^xsd:float .
+
+:Manufacturer-Jeep a gr:BusinessEntity ;
+	rdfs:label "Jeep" .
+
+:Model-2spkv7ol89mupb0elrr27n76vq7u0fkk a gr:ProductOrServiceModel ;
+	rdfs:label "Jeep Grand Cherokee" ;
+	gr:hasManufacturer :Manufacturer-Jeep .
+
+:Car-4 a vso:Automobile , gr:ActualProductOrServiceInstance ;
+	rdfs:label "Jeep Grand Cherokee (1996)" ;
+	gr:hasManufacturer :Manufacturer-i2le5jc5p2un61u30h8jdanrlshnfb67 ;
+	gr:hasMakeAndModel :Model-2spkv7ol89mupb0elrr27n76vq7u0fkk ;
+	vso:modelDate "1996-01-01"^^xsd:date .
+
+:Offer-ju09d3ie4gjrlmkot6o0ep05d53tdsfa a gr:Offering ;
+	rdfs:comment """MUST SELL!
+air, moon roof, loaded""" ;
+	gr:includes :Car-4 ;
+	gr:hasBusinessFunction gr:Sell ;
+	gr:hasPriceSpecification _:node1f5nqeqfvx4 .
+
+_:node1f5nqeqfvx4 a gr:UnitPriceSpecification ;
+	gr:hasCurrency "USD"^^xsd:string ;
+	gr:hasCurrencyValue "4799.00"^^xsd:float .
