@@ -52,6 +52,9 @@ import com.google.common.hash.Hashing;
 import com.google.common.io.BaseEncoding;
 import com.google.common.io.Files;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Converts a CSV file to RDF based on a given template
  * 
@@ -80,6 +83,7 @@ public class CSV2RDF implements Runnable {
 	public List<String> files;
 	private int inputRows = 0;
 	private int outputTriples = 0;
+	private final static Logger LOGGER = Logger.getLogger(Logger.class.getName());
 
 	public void run() {
 		Preconditions.checkArgument(files.size() >= 3, "Missing arguments");
@@ -430,8 +434,8 @@ public class CSV2RDF implements Runnable {
 			                .build().parse(args).run();
 		}
 		catch (Exception e) {
-			System.err.println("ERROR: " + e.getMessage());
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE,e.getMessage());
+			
 		}
 	}
 }
