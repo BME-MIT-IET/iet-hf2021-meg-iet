@@ -1,7 +1,7 @@
 # Teljesítmény tesztek
 
-A program nem-funkcionális jellemzők közül az egyik legfontosabb a futási idő.
-Ennek méréséhez a prgramot kiegészítettem egy az alábbi pár sorral, amely a futás elejétől a végéig eltelt időt méri ezredmásodpercben.
+A program nem-funkcionális jellemzői közül ez a dokumentum tartalmazza a teljesítmény teszteket.
+Ennek méréséhez a programot kiegészítettem az alábbi pár sorral, amely a futás elejétől a végéig eltelt időt méri ezredmásodpercben.
 
 ```
 long start = System.currentTimeMillis();
@@ -13,7 +13,7 @@ System.out.println("Elapsed time in milliseconds " + (finish - start));
 
 ```
 
-Ezután változó méretű csv fájlok konvertállását futtattam, változó bonyolultságú template-ek mellett.
+Ezután változó méretű csv fájlok konvertálását futtattam, változó bonyolultságú template-ek mellett.
 A teszteléshez használt csv fájlok, a használt template-ek és a generált output-ok a performance-tests mappában találhatóak.
 
 ## 1. teszt: Szélerőművek
