@@ -61,6 +61,15 @@ A SonarQube által jelzett codesmell miatt javítva:
 private static final Logger LOGGER = Logger.getLogger(CSV2RDF.class.getName());
 ```
 
+
+### Code smell #1
+
+A SonarQube talált egy Code Smell-t, ugyanis a "var" kulcsszó változónévként szerepel a kódban. Ez érvényes kód, azonban rendkívül megtévesztő, ugyanis már a Java nyelvnek is része a "var" kulcsszó, amivel a kikövetkeztethető típusokat lehet helyettesíteni.
+
+![](images/restricted-identifier.PNG)
+
+A var kulcsszó jelen esetben a variable-re utal, ezért a változót átneveztem _var_-ról _variable_-re.
+
 ### System.out lecserélése Logger-re:
 
 A korábbiakban említett loggert használva az alábbi sorok változtak:

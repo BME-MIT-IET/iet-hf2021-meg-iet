@@ -17,7 +17,7 @@ A tesztekhez előállított file-ok a manual-tests mappában találhatóak. Ezek
 
 ### Input:
 
-A [cars.csv](examples/cars/cars.csv) és a [template.ttl](example/cars/template.ttl) file.
+Az examples/cars/cars.csv és az example/cars/template.ttl file.
 
 ### A futtatott parancs:
 
@@ -33,18 +33,18 @@ Output  : manual-tests\cars.ttl
 Converted 4 rows to 76 triples
 ```
 
-A kimeneti [manual-tests/cars.ttl](manual-tests/cars.ttl) file azonos a példában megadott [cars.ttl](examples/cars/cars.ttl) tartalmával.
+A kimeneti manual-tests/cars.ttl file azonos a példában megadott examples/cars/cars.ttl tartalmával.
 
 ## Eltérő escape karakter használata:
 
 ### Input:
 
-[escape-char.csv](manual-tests/escape-char.csv), a [cars.csv](examples/cars/cars.csv) módosított változata amely `/` karaktereket használja escape karakternek az alapértelmezett `\` helyett.
+Az escape-char.csv, az examples/cars/cars.csv módosított változata amely `/` karaktereket használja escape karakternek az alapértelmezett `\` helyett.
 
 Használat a bemeneti csv rekordjának Description mezőjében:
 `1997,Ford,E350,"this is an /"inner quote/"",3000.00`
 
-A bemeneti template azonos marad ([template.ttl](examples/cars/template.ttl)).
+A bemeneti template azonos marad (examples/cars/template.ttl).
 
 ### A futtatott parancs:
 
@@ -70,13 +70,13 @@ A fenti bemeneti rekordnak megfelelő kimenet:
 	gr:hasPriceSpecification _:node1f5npapifx1 .
 ```
 
-A kimeneti [escape-char.ttl](manual-tests/escape-char.ttl) file ezen kívül azonos a példában megadott [cars.ttl](examples/cars/cars.ttl) tartalmával.
+A kimeneti escape-char.ttl file ezen kívül azonos a példában megadott examples/cars/cars.ttl tartalmával.
 
 ## Eltérő quote karakter használata:
 
 ### Input:
 
-[quote-char.csv](manual-tests/quote-char.csv), a [cars.csv](examples/cars/cars.csv) módosított változata amely `'` karaktereket használ az alapértelmezett `"` helyett. A bemeneti template azonos marad ([template.ttl](examples/cars/template.ttl)).
+A quote-char.csv, az examples/cars/cars.csv módosított változata amely `'` karaktereket használ az alapértelmezett `"` helyett. A bemeneti template azonos marad (examples/cars/template.ttl).
 
 ### A futtatott parancs:
 
@@ -92,13 +92,13 @@ Output  : manual-tests\quote-char.ttl
 Converted 4 rows to 76 triples
 ```
 
-A kimeneti [quote-char.ttl](manual-tests/quote-char.ttl) file azonos a példában megadott [cars.ttl](examples/cars/cars.ttl) tartalmával.
+A kimeneti quote-char.ttl file azonos a példában megadott examples/cars/cars.ttl tartalmával.
 
 ## Eltérő elválasztó karakter használata:
 
 ### Input:
 
-[separator-char.csv](manual-tests/separator-char.csv), a [cars.csv](examples/cars/cars.csv) módosított változata amely `;` karaktereket használ elválasztáshoz. A bemeneti template azonos marad ([template.ttl](examples/cars/template.ttl)).
+A separator-char.csv, az examples/cars/cars.cs) módosított változata amely `;` karaktereket használ elválasztáshoz. A bemeneti template azonos marad (examples/cars/template.ttl).
 
 ### A futtatott parancs:
 
@@ -114,7 +114,7 @@ Output  : manual-tests\separator-char.ttl
 Converted 4 rows to 76 triples
 ```
 
-A kimeneti [separator-char.ttl](manual-tests/separator-char.ttl) file azonos a példában megadott [cars.ttl](examples/cars/cars.ttl) tartalmával.
+A kimeneti separator-char.ttl file azonos a példában megadott examples/cars/cars.ttl tartalmával.
 
 ## Header nélküli csv konverziója:
 
@@ -122,7 +122,7 @@ A kimeneti [separator-char.ttl](manual-tests/separator-char.ttl) file azonos a p
 
 `java -jar dist/lib/csv2rdf.jar examples/cars/template.ttl manual-tests/no-headers.csv manual-tests/no-headers.ttl`
 
-Ilyenkor a template file-ban nem hivatkozhatunk közvetlenül az oszlopok neveire. Ehelyett az oszlopok sorszámával tudunk a tartalmukra hivatkozni. Az ez alapján átírt template a ['no-headers-template.ttl](manual-tests/no-headers-template.ttl) file-ban található.
+Ilyenkor a template file-ban nem hivatkozhatunk közvetlenül az oszlopok neveire. Ehelyett az oszlopok sorszámával tudunk a tartalmukra hivatkozni. Az ez alapján átírt template a no-headers-template.ttl file-ban található.
 
 ### Output
 
@@ -134,7 +134,7 @@ Output  : manual-tests\no-headers.ttl
 Converted 4 rows to 76 triples
 ```
 
-A kimeneti [no-headers.ttl](manual-tests/no-headers.ttl) file azonos a példában megadott [cars.ttl](examples/cars/cars.ttl) tartalmával.
+A kimeneti no-headers.ttl file azonos a példában megadott examples/cars/cars.ttl tartalmával.
 
 ## Hibajelzések:
 
