@@ -83,7 +83,7 @@ public class CSV2RDF implements Runnable {
 	public List<String> files;
 	private int inputRows = 0;
 	private int outputTriples = 0;
-	private final static Logger LOGGER = Logger.getLogger(Logger.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CSV2RDF.class.getName());
 
 	public void run() {
 		Preconditions.checkArgument(files.size() >= 3, "Missing arguments");

@@ -55,3 +55,8 @@ private final static Logger LOGGER = Logger.getLogger(Logger.class.getName());
 
 LOGGER.log(Level.SEVERE,e.getMessage());
 ```
+A SonarQube által jelzett codesmell miatt javítva:
+
+```
+private static final Logger LOGGER = Logger.getLogger(CSV2RDF.class.getName());
+```
