@@ -50,8 +50,8 @@ catch (Exception e) {
 
 ```
 private final static Logger LOGGER = Logger.getLogger(Logger.class.getName());
-
 ...
+
 
 LOGGER.log(Level.SEVERE,e.getMessage());
 ```
@@ -60,3 +60,32 @@ A SonarQube által jelzett codesmell miatt javítva:
 ```
 private static final Logger LOGGER = Logger.getLogger(CSV2RDF.class.getName());
 ```
+
+### System.out lecserélése Logger-re:
+
+A korábbiakban említett loggert használva az alábbi sorok változtak:
+
+Korábban:
+
+```
+	System.out.println("CSV to RDF conversion started...");
+	System.out.println("Template: " + templateFile);
+	System.out.println("Input   : " + inputFile);
+	System.out.println("Output  : " + outputFile);
+```
+Frissített verzió:
+```
+	LOGGER.info("CSV to RDF conversion started...");
+	LOGGER.log(Level.INFO,"Template: {0}",templateFile);
+	LOGGER.log(Level.INFO,"Input   : {0}",inputFile);
+	LOGGER.log(Level.INFO,"Output   : {0}",outputFile);
+```	
+Korábban:
+```
+	System.out.printf("Converted %,d rows to %,d triples%n", inputRows, outputTriples);
+```
+Frissített verzió:
+```
+	LOGGER.log(Level.INFO,"Converted {0} rows to {1} triples%n", new Object[] {inputRows,outputTriples});
+```
+Itt azért van szükség az objektum létrehozárása, mert több paramétert szeretnénk megadni kiíráskor.
