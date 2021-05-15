@@ -425,9 +425,12 @@ public class CSV2RDF implements Runnable {
 
 	public static void main(String[] args) throws Exception {
 		try {
+			long start = System.currentTimeMillis();
 			Cli.<Runnable> builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
 			                .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
 			                .build().parse(args).run();
+			long finish = System.currentTimeMillis();
+			System.out.println("Elapsed time in milliseconds " + (finish - start));
 		}
 		catch (Exception e) {
 			System.err.println("ERROR: " + e.getMessage());
