@@ -3,6 +3,7 @@
 package com.complexible.common.csv;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -43,6 +44,7 @@ import org.openrdf.rio.RDFParser;
 import org.openrdf.rio.RDFWriter;
 import org.openrdf.rio.Rio;
 import org.openrdf.rio.RioSetting;
+import org.openrdf.rio.UnsupportedRDFormatException;
 import org.openrdf.rio.helpers.BasicParserSettings;
 import org.openrdf.rio.helpers.RDFHandlerBase;
 
@@ -123,8 +125,14 @@ public class CSV2RDF implements Runnable {
 			reader.close();
 			in.close();
 			out.close();
-		}
-		catch (Exception e) {
+		} catch (FileNotFoundException f) {
+			System.out.printf("File not found%n");
+			LOGGER.log(Level.SEVERE, f.getMessage());
+		} catch (IOException io) {
+			LOGGER.log(Level.SEVERE, io.getMessage());
+		} catch (UnsupportedRDFormatException | RDFParseException | RDFHandlerException e) {
+			LOGGER.log(Level.SEVERE, e.getMessage());
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		System.out.printf("Converted %,d rows to %,d triples%n", inputRows, outputTriples);
