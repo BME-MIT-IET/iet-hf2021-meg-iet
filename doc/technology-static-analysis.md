@@ -28,3 +28,11 @@ Preconditions.checkArgument(valueProvider != null, "Invalid template variable", 
 
 ugyanis ebben a sorban a [Preconditions](https://guava.dev/releases/19.0/api/docs/com/google/common/base/Preconditions.html).checkArgument függvénye IllegalArgumentExceptiont fog dobni, abban az esetben, ha a valueProvider null. Így a nem várt NullPointerException nem következhet be, ugyanis a program futása hamarabb le fog állni.
 Így a csapat megegyezett benne, hogy ez a hiba nem hiba, és a SonarQube-ban a false positive jelzést választottuk.
+
+### Code smell #1
+
+A SonarQube talált egy Code Smell-t, ugyanis a "var" kulcsszó változónévként szerepel a kódban. Ez érvényes kód, azonban rendkívül megtévesztő, ugyanis már a Java nyelvnek is része a "var" kulcsszó, amivel a kikövetkeztethető típusokat lehet helyettesíteni.
+
+![](images/restricted-identifier.PNG)
+
+A var kulcsszó jelen esetben a variable-re utal, ezért a változót átneveztem _var_-ról _variable_-re.
