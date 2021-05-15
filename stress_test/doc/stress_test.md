@@ -4,7 +4,7 @@ Az alkalmazás jellegéből adódóan nehezen találni szűk keresztmetszetet ra
 
 ## Program futásidejének mérése
 
-Az egyedüli terhelési pontja a programnak az input fájl mérete, így az internetről letöltöttem egy példa .csv fájlt, mely kb. 100 000 sornyi adatot tartalmaz. 
+Az egyedüli terhelési pontja a programnak az input fájl mérete, így az internetről letöltöttem egy példa .csv fájlt, mely kb. 100 000 sornyi adatot tartalmaz (ez a [stress_input.csv](stress_test/stress_input.csv) fájlban található) és írtam hozzá egy erre illeszkedő template fájlt. 
 
 ### Mérés
 
@@ -26,4 +26,20 @@ A projektben példaként megadott cars.csv fájlon (5 sort tartalmaz) szintén v
 
 ### Kiértékelés
 
-A futásidő a példa inputhoz képest durván megduplázódott a kb. 100 ezer extra sor hozzáadásával. Az eredmény átlagosnak mondható, nem száll el a lefutás ekkora inputtól, de kellően lassabbá válik ahhoz, hogy ne ezt a konvertert használjuk pármillió soros .csv fájlok esetén. 
+A futásidő a példa inputhoz képest durván megduplázódott a kb. 100 ezer extra sor hozzáadásával. Az eredmény átlagosnak mondható, nem száll el a lefutás ekkora inputtól. Némi számítással kijön, hogy kb. 6 ms a feldolgozási ideje minden  100 sornak a csv fájlban. (Persze az, hogy egy sor feldolgozási ideje mennyi, azt nagyban befolyásolja a template is. A számítások a stress_input csv és ttl fájlokra vonatkoztatva értetendőek.)  Feltéve, hogy lineárisan növekedik a futásidő az input mérete függvényében, egy 1 milliárd soros csv esetén a program kb. 16 óráig futna. (Itt megint érdemes a nagyságrendet szem előtt tartani, nem a pontos értékeket.) A tervezett bemeneti fájlok mérete azonban ennél jóval kisebb, így ez reális gondot nem okoz, ilyen nagy fájloknál várható, hogy egy konverzió sem lesz pár perces futásidejű. 
+
+## Hibás szintaxis
+
+A programban testreszabhatóak a különleges karakterek (escape, quote, stb). Ha ezeket mégis máshogy használnánk a fájlban, az a várt módon okozhat gondot, pl. parse-olásnál üres stringekkel töltheti fel az rdf szöveges literál értékeit. A template fájl megírásánál először nem idézőjelek közé tettem véletlenül a behelyettesítendő string értékeket, ekkor a fájlt értelmező RDFParser már akkor hibát dobott, mielőtt még a .csv fájlt elkezdte volna feldolgozni. 
+
+![](exception.png)
+
+A manuális tesztek között végrehajtottunk olyan tesztet is, amikor a bemenő csv fájl nem tartalmaz sort. Ekkor a program maga ismeri fel a problémát és egy hibaüzenettel leáll a futás. 
+
+### Kiértékelés
+
+A program a helyes lefutáshoz megköveteli a template fájl helyes szintaxisát. bármilyen szintaktikai hiba ahhoz vezet, hogy az RDFParser kivételt dob. Ez egy érthető elvárás, hiszen enélkül nem értelmezhető a konverzió. 
+
+A hiányos .csv fájlnál kevesebb gond van, ekkor max. egy-egy sorban léphetnek fel problémák, ha elcsúsznak az adatok. (Tehát szemantikailag lehet probléma a kapott fájlban, de a konverzió megtörténik.) Természetesen az sem meglepő, hogy üres fájlt nem tud a program feldolgozni. 
+
+>Összességében a stresszteszt megmutatta, hogy amennyiben szintaktikailag helyesek a bemeneti fájlok, a konverzió rendben lefut. A nagy méretű fájlok esetén 
