@@ -118,10 +118,23 @@ A kimeneti [separator-char.ttl](manual-tests/separator-char.ttl) file azonos a p
 
 ## Header nélküli csv konverziója:
 
-A futtatott parancs:
+### A futtatott parancs:
+
 `java -jar dist/lib/csv2rdf.jar examples/cars/template.ttl manual-tests/no-headers.csv manual-tests/no-headers.ttl`
 
-Ilyenkor a template file-ban nem hivatkozhatunk közvetlenül az oszlopokban tárolt értékekre
+Ilyenkor a template file-ban nem hivatkozhatunk közvetlenül az oszlopok neveire. Ehelyett az oszlopok sorszámával tudunk a tartalmukra hivatkozni. Az ez alapján átírt template a ['no-headers-template.ttl](manual-tests/no-headers-template.ttl) file-ban található.
+
+### Output
+
+```
+CSV to RDF conversion started...
+Template: manual-tests\no-headers-template.ttl
+Input   : manual-tests\no-headers.csv
+Output  : manual-tests\no-headers.ttl
+Converted 4 rows to 76 triples
+```
+
+A kimeneti [no-headers.ttl](manual-tests/no-headers.ttl) file azonos a példában megadott [cars.ttl](examples/cars/cars.ttl) tartalmával.
 
 ## Hibajelzések:
 
