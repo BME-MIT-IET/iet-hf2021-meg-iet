@@ -39,7 +39,7 @@ A kimeneti manual-tests/cars.ttl file azonos a példában megadott examples/cars
 
 ### Input:
 
-escape-char.csv, az examples/cars/cars.csv módosított változata amely `/` karaktereket használja escape karakternek az alapértelmezett `\` helyett.
+Az escape-char.csv, az examples/cars/cars.csv módosított változata amely `/` karaktereket használja escape karakternek az alapértelmezett `\` helyett.
 
 Használat a bemeneti csv rekordjának Description mezőjében:
 `1997,Ford,E350,"this is an /"inner quote/"",3000.00`
@@ -76,7 +76,7 @@ A kimeneti escape-char.ttl file ezen kívül azonos a példában megadott exampl
 
 ### Input:
 
-quote-char.csv, a examples/cars/cars.csv módosított változata amely `'` karaktereket használ az alapértelmezett `"` helyett. A bemeneti template azonos marad (examples/cars/template.ttl).
+A quote-char.csv, az examples/cars/cars.csv módosított változata amely `'` karaktereket használ az alapértelmezett `"` helyett. A bemeneti template azonos marad (examples/cars/template.ttl).
 
 ### A futtatott parancs:
 
@@ -98,7 +98,7 @@ A kimeneti quote-char.ttl file azonos a példában megadott examples/cars/cars.t
 
 ### Input:
 
-separator-char.csv, a examples/cars/cars.cs) módosított változata amely `;` karaktereket használ elválasztáshoz. A bemeneti template azonos marad (examples/cars/template.ttl).
+A separator-char.csv, az examples/cars/cars.cs) módosított változata amely `;` karaktereket használ elválasztáshoz. A bemeneti template azonos marad (examples/cars/template.ttl).
 
 ### A futtatott parancs:
 
