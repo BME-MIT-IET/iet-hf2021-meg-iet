@@ -1,0 +1,30 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix gr:      <http://purl.org/goodrelations/v1#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix vso:     <http://purl.org/vso/ns#> .
+@prefix : <http://example.org/cars#> .
+
+:Manufacturer-${Make} a gr:BusinessEntity ;
+	rdfs:label "${Make}" .
+	
+:Model-#{Model} a gr:ProductOrServiceModel ;
+	rdfs:label "${Make} ${Model}" ;
+	gr:hasManufacturer :Manufacturer-${Make} .	
+	
+:Car-${_ROW_} a vso:Automobile, gr:ActualProductOrServiceInstance ;
+    rdfs:label "${Make} ${Model} (${Year})" ;
+    gr:hasManufacturer :Manufacturer-#{Make} ;
+    gr:hasMakeAndModel :Model-#{Model} ;
+    vso:modelDate "${Year}-01-01"^^xsd:date .
+
+:Offer-#{_UUID_} a gr:Offering ;
+    rdfs:comment "${Description}" ;
+    gr:includes :Car-${_ROW_} ;
+    gr:hasBusinessFunction gr:Sell ;
+    gr:hasPriceSpecification _:price .
+    
+_:price a gr:UnitPriceSpecification ;
+    gr:hasCurrency "USD"^^xsd:string ;
+    gr:hasCurrencyValue "${Price}"^^xsd:float .
