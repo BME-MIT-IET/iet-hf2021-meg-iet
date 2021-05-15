@@ -2,12 +2,6 @@
 
 package com.complexible.common.csv;
 
-import io.airlift.command.Arguments;
-import io.airlift.command.Cli;
-import io.airlift.command.Command;
-import io.airlift.command.Help;
-import io.airlift.command.Option;
-
 import java.io.File;
 import java.io.Reader;
 import java.io.StringReader;
@@ -20,6 +14,16 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.google.common.base.Charsets;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.google.common.hash.HashCode;
+import com.google.common.hash.Hashing;
+import com.google.common.io.BaseEncoding;
+import com.google.common.io.Files;
 
 import org.openrdf.model.BNode;
 import org.openrdf.model.Literal;
@@ -41,16 +45,11 @@ import org.openrdf.rio.helpers.BasicParserSettings;
 import org.openrdf.rio.helpers.RDFHandlerBase;
 
 import au.com.bytecode.opencsv.CSVReader;
-
-import com.google.common.base.Charsets;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import com.google.common.hash.HashCode;
-import com.google.common.hash.Hashing;
-import com.google.common.io.BaseEncoding;
-import com.google.common.io.Files;
+import io.airlift.command.Arguments;
+import io.airlift.command.Cli;
+import io.airlift.command.Command;
+import io.airlift.command.Help;
+import io.airlift.command.Option;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -165,11 +164,11 @@ public class CSV2RDF implements Runnable {
 			Matcher m = p.matcher(Files.toString(templateFile, INPUT_CHARSET));
 			StringBuffer sb = new StringBuffer();
 			while (m.find()) {
-				String var = m.group(1);
-				String varName = var.substring(2, var.length() - 1);
+				String variable = m.group(1);
+				String varName = variable.substring(2, variable.length() - 1);
 				ValueProvider valueProvider = valueProviderFor(varName, cols);
-				Preconditions.checkArgument(valueProvider != null, "Invalid template variable", var);
-				valueProvider.isHash = (var.charAt(0) == '#');
+				Preconditions.checkArgument(valueProvider != null, "Invalid template variable", variable);
+				valueProvider.isHash = (variable.charAt(0) == '#');
 				m.appendReplacement(sb, valueProvider.placeholder);
 				valueProviders.add(valueProvider);
 			}
