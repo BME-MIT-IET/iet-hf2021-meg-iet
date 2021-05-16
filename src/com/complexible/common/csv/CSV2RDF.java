@@ -86,7 +86,7 @@ public class CSV2RDF implements Runnable {
 	public List<String> files;
 	private int inputRows = 0;
 	private int outputTriples = 0;
-	private final static Logger LOGGER = Logger.getLogger(Logger.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CSV2RDF.class.getName());
 
 	public void run() {
 		Preconditions.checkArgument(files.size() >= 3, "Missing arguments");
@@ -95,10 +95,10 @@ public class CSV2RDF implements Runnable {
 		File templateFile = new File(files.get(0));
 		File inputFile = new File(files.get(1));
 		File outputFile =  new File(files.get(2));
-		System.out.println("CSV to RDF conversion started...");
-		System.out.println("Template: " + templateFile);
-		System.out.println("Input   : " + inputFile);
-		System.out.println("Output  : " + outputFile);
+		LOGGER.info("CSV to RDF conversion started...");
+		LOGGER.log(Level.INFO,"Template: {0}",templateFile);
+		LOGGER.log(Level.INFO,"Input   : {0}",inputFile);
+		LOGGER.log(Level.INFO,"Output   : {0}",outputFile);
 		
 		try {
 			Reader in = Files.newReader(inputFile, INPUT_CHARSET);
@@ -135,7 +135,8 @@ public class CSV2RDF implements Runnable {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		System.out.printf("Converted %,d rows to %,d triples%n", inputRows, outputTriples);
+		
+		LOGGER.log(Level.INFO,"Converted {0} rows to {1} triples%n", new Object[] {inputRows,outputTriples});
 	}
 
 	private static char toChar(String value) {
@@ -438,9 +439,12 @@ public class CSV2RDF implements Runnable {
 
 	public static void main(String[] args) {
 		try {
+			long start = System.currentTimeMillis();
 			Cli.<Runnable> builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
 			                .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
 			                .build().parse(args).run();
+			long finish = System.currentTimeMillis();
+			System.out.println("Elapsed time in milliseconds " + (finish - start));
 		}
 		catch (Exception e) {
 			LOGGER.log(Level.SEVERE,e.getMessage());

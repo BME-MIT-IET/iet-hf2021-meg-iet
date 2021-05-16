@@ -8,7 +8,7 @@ A lehetséges opciókat az alábbi paranccsal lehet kilistázni:
 
 A help kimenete:
 
-![](help-output.PNG)
+![](images/help-output.PNG)
 
 Ezeknek a funkcióknak a működését teszteljük. A manuális teszthez szükségünk van több bemeneti csv-re és a belőlük generált elvárt fájl template-jére.
 A tesztekhez előállított file-ok a manual-tests mappában találhatóak. Ezeket a bemeneteket a cars példa csv-ből és template-ből kiindulva állítottuk össze.
@@ -196,3 +196,5 @@ Caused by: java.lang.NullPointerException: Input file is empty!
         at com.complexible.common.csv.CSV2RDF.run(CSV2RDF.java:101)
         ... 1 more
 ```
+## Konklúzó
+Ezek alapján a program megfelelő bemenetek megadásával elvégzi a konverziókat és biztosítja a megadott funkciókat. A hibajelzés és a fehasználóval való interakció viszont hagy kívánnivalót maga után. A hibakezelés hiánya kissé megnehezíti az eszköz gördülékeny használatát. A stack trace kiírása a standard outputra szoftverbiztonsági kérdéseket is felvet.
