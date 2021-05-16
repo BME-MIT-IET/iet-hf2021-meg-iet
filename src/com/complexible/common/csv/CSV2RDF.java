@@ -3,6 +3,8 @@
 package com.complexible.common.csv;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.Writer;
@@ -37,10 +39,12 @@ import org.openrdf.rio.ParserConfig;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFHandler;
 import org.openrdf.rio.RDFHandlerException;
+import org.openrdf.rio.RDFParseException;
 import org.openrdf.rio.RDFParser;
 import org.openrdf.rio.RDFWriter;
 import org.openrdf.rio.Rio;
 import org.openrdf.rio.RioSetting;
+import org.openrdf.rio.UnsupportedRDFormatException;
 import org.openrdf.rio.helpers.BasicParserSettings;
 import org.openrdf.rio.helpers.RDFHandlerBase;
 
@@ -121,8 +125,13 @@ public class CSV2RDF implements Runnable {
 			reader.close();
 			in.close();
 			out.close();
-		}
+		} catch (UnsupportedRDFormatException f) {
+			LOGGER.log(Level.INFO, "Unsupported RDF format%n");
+			LOGGER.log(Level.SEVERE, f.getMessage());
+			throw f;
+		} 
 		catch (Exception e) {
+			LOGGER.log(Level.SEVERE, e.getMessage());
 			throw new RuntimeException(e);
 		}
 		
@@ -155,11 +164,11 @@ public class CSV2RDF implements Runnable {
 		private List<StatementGenerator> stmts = Lists.newArrayList();
 		private List<ValueProvider> valueProviders = Lists.newArrayList();
 
-		Template(List<String> cols, File templateFile, RDFWriter writer) throws Exception {
+		Template(List<String> cols, File templateFile, RDFWriter writer) throws RDFParseException, RDFHandlerException, IOException {
 			parseTemplate(cols, templateFile, writer);
 		}
 
-		private String insertPlaceholders(List<String> cols, File templateFile) throws Exception {
+		private String insertPlaceholders(List<String> cols, File templateFile) throws IOException {
 			Pattern p = Pattern.compile("([\\$|\\#]\\{[^}]*\\})");
 
 			Matcher m = p.matcher(Files.toString(templateFile, INPUT_CHARSET));
@@ -178,7 +187,7 @@ public class CSV2RDF implements Runnable {
 			return sb.toString();
 		}
 
-		private ValueProvider valueProviderFor(String varName, List<String> cols) throws Exception {
+		private ValueProvider valueProviderFor(String varName, List<String> cols) {
 			if (varName.equalsIgnoreCase("_ROW_")) {
 				return new RowNumberProvider(); 
 			}
@@ -206,7 +215,7 @@ public class CSV2RDF implements Runnable {
 			return index == -1 ? null : new RowValueProvider(index);
 		}
 
-		private void parseTemplate(List<String> cols, File templateFile, final RDFWriter writer) throws Exception {
+		private void parseTemplate(List<String> cols, File templateFile, final RDFWriter writer) throws RDFParseException, RDFHandlerException, IOException {
 			String templateStr = insertPlaceholders(cols, templateFile);
 
 			RDFParser parser = Rio.createParser(RDFFormat.forFileName(templateFile.getName()));
@@ -427,17 +436,19 @@ public class CSV2RDF implements Runnable {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		try {
 			long start = System.currentTimeMillis();
 			Cli.<Runnable> builder("csv2rdf").withDescription("Converts a CSV file to RDF based on a given template")
 			                .withDefaultCommand(CSV2RDF.class).withCommand(CSV2RDF.class).withCommand(Help.class)
 			                .build().parse(args).run();
 			long finish = System.currentTimeMillis();
-			System.out.println("Elapsed time in milliseconds " + (finish - start));
+			LOGGER.log(Level.INFO, "Elapsed time in milliseconds " + (finish - start));
 		}
 		catch (Exception e) {
 			LOGGER.log(Level.SEVERE,e.getMessage());
+			
+		} finally {
 			
 		}
 	}
