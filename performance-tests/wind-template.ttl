@@ -1,0 +1,28 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix vso: <http://purl.org/vso/ns#> .
+@prefix : <http://example.org/cars#> .
+
+
+
+:Production-${_ROW_}2016 a dbpedia:Statistic ;
+    rdfs:label "Production units" ;
+    dbpedia:Production "${0}" .
+
+:Production-${_ROW_}2017 a dbpedia:Statistic ;
+    rdfs:label "Production units" ;
+    dbpedia:Production "${1}" .
+
+:Production-${_ROW_}2018 a dbpedia:Statistic ;
+    rdfs:label "Production units" ;
+    dbpedia:Production "${2}" .
+:Production-${_ROW_}2019 a dbpedia:Statistic ;
+    rdfs:label "Production units" ;
+    dbpedia:Production "${3}" .
+:Production-${_ROW_}2020 a dbpedia:Statistic ;
+    rdfs:label "Production units" ;
+    dbpedia:Production "${4}" .
+

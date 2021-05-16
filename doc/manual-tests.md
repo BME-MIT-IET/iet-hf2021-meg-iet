@@ -8,7 +8,7 @@ A lehetséges opciókat az alábbi paranccsal lehet kilistázni:
 
 A help kimenete:
 
-![](help-output.PNG)
+![](images/help-output.PNG)
 
 Ezeknek a funkcióknak a működését teszteljük. A manuális teszthez szükségünk van több bemeneti csv-re és a belőlük generált elvárt fájl template-jére.
 A tesztekhez előállított file-ok a manual-tests mappában találhatóak. Ezeket a bemeneteket a cars példa csv-ből és template-ből kiindulva állítottuk össze.
