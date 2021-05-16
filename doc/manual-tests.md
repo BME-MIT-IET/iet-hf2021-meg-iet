@@ -196,3 +196,5 @@ Caused by: java.lang.NullPointerException: Input file is empty!
         at com.complexible.common.csv.CSV2RDF.run(CSV2RDF.java:101)
         ... 1 more
 ```
+## Konklúzó
+Ezek alapján a program megfelelő bemenetek megadásával elvégzi a konverziókat és biztosítja a megadott funkciókat. A hibajelzés és a fehasználóval való interakció viszont hagy kívánnivalót maga után. A hibakezelés hiánya kissé megnehezíti az eszköz gördülékeny használatát. A stack trace kiírása a standard outputra szoftverbiztonsági kérdéseket is felvet.
