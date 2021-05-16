@@ -3,7 +3,6 @@
 package com.complexible.common.csv;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -14,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,9 +55,6 @@ import io.airlift.command.Cli;
 import io.airlift.command.Command;
 import io.airlift.command.Help;
 import io.airlift.command.Option;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Converts a CSV file to RDF based on a given template
@@ -447,8 +445,6 @@ public class CSV2RDF implements Runnable {
 		}
 		catch (Exception e) {
 			LOGGER.log(Level.SEVERE,e.getMessage());
-			
-		} finally {
 			
 		}
 	}
