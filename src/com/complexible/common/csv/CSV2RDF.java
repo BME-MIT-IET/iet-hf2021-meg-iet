@@ -125,16 +125,13 @@ public class CSV2RDF implements Runnable {
 			reader.close();
 			in.close();
 			out.close();
-		} catch (FileNotFoundException f) {
-			LOGGER.log(Level.INFO, "File not found%n");
-			LOGGER.log(Level.SEVERE, f.getMessage());
-		} catch (IOException io) {
-			LOGGER.log(Level.SEVERE, io.getMessage());
 		} catch (UnsupportedRDFormatException f) {
+			LOGGER.log(Level.INFO, "Unsupported RDF format%n");
 			LOGGER.log(Level.SEVERE, f.getMessage());
-			throw new UnsupportedRDFormatException(f);
+			throw f;
 		} 
 		catch (Exception e) {
+			LOGGER.log(Level.SEVERE, e.getMessage());
 			throw new RuntimeException(e);
 		}
 		
@@ -450,6 +447,8 @@ public class CSV2RDF implements Runnable {
 		}
 		catch (Exception e) {
 			LOGGER.log(Level.SEVERE,e.getMessage());
+			
+		} finally {
 			
 		}
 	}
