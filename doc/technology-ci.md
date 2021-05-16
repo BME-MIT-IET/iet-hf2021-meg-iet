@@ -11,7 +11,7 @@ Ennek lépései egyszerűek, [le kell töltelni](https://ant.apache.org/bindownl
 
 A projekten korábban nem volt CI, így ennek beüzemelése következett.
 
-Testek hiányában csak buildelni van lehetőség. Ehhez a Github által felajánlott Java With Maven-ből indultam ki, amelyben a
+Tesztek hiányában csak buildelni van lehetőség. Ehhez a Github által felajánlott Java With Maven-ből indultam ki, amelyben a
 
 ```
 run: mvn -B package --file build.xml
